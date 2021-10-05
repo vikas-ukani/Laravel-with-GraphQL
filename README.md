@@ -42,7 +42,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
    
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Contributions, Developer Discussions, and Any Valuable Feedback are most welcome. [Make your CONTRIBUTING](https://github.com/vikas-ukani/Laravel8-With-GraphQL-APIs/blob/main/CONTRIBUTING.md).
 
 ## Code of Conduct
 
