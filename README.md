@@ -25,6 +25,27 @@ git clone https://github.com/vikas-ukani/Laravel8-With-GraphQL-APIs.git
 
 5. Run `php artisan migrate` to run the migrations to the database.
 
+## Running with Docker 🐋
+
+1. Clone the repository
+```
+git clone https://github.com/vikas-ukani/Laravel8-With-GraphQL-APIs.git
+```
+2. Build the containers
+```
+docker-compose up -d
+```
+3. Create your .env file by copying the example provided in the repository and create a laravel.log file into the container and set permissions
+```
+ docker-compose exec php-lwg cp .env.example .env
+ docker-compose exec php-lwg touch storage/laravel.log   
+ docker-compose exec php-lwg chown -R www-data:www-data /var/www/app/storage 
+```
+4. Finally create a valid artisan key
+```
+ docker-compose exec php-lwg php artisan key:generate
+```
+Now you can migrations, seeders or any command with the containers.
 
 ## Little About Laravel
 
