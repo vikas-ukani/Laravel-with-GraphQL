@@ -33,7 +33,7 @@ class MyProfileQuery extends Query
             $this->auth = null;
         }
         return (bool) $this->auth;
-        
+
         print_r(json_encode([$root, $args]));
         die;
         try {

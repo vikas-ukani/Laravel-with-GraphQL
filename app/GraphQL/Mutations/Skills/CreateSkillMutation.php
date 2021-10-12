@@ -27,7 +27,11 @@ class CreateSkillMutation extends Mutation
     public function args(): array
     {
         return [
-            'skill_title' => ['name' => 'skill_title', 'type' => Type::nonNull(Type::string())]
+            'skill_title' => [
+                'name' => 'skill_title',
+                'type' => Type::nonNull(Type::string()),
+                'rules' => ['required']
+            ]
         ];
     }
 

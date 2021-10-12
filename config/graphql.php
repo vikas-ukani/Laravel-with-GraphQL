@@ -2,12 +2,20 @@
 
 declare(strict_types=1);
 
+use App\GraphQL\Mutations\Auth\LoginUserMutation;
+use App\GraphQL\Mutations\Auth\RegisterUserMutation;
 use App\GraphQL\Mutations\Skills\CreateSkillMutation;
 use App\GraphQL\Mutations\Skills\UpdateSkillMutation;
 use App\GraphQL\Queries\SkillsQuery;
+use App\GraphQL\Queries\Task\TaskQuery;
+use App\GraphQL\Queries\User\PersonalAccessTokenQuery;
+use App\GraphQL\Queries\User\UsersQuery;
 use App\GraphQL\Queries\User\MyProfileQuery;
 use App\GraphQL\Types\SkillType;
+use App\GraphQL\Types\Task\TaskType;
 use App\GraphQL\Types\User\MyProfileType;
+use App\GraphQL\Types\User\UserAccessTokenType;
+use App\GraphQL\Types\User\UserType;
 
 return [
     // The prefix for routes
@@ -111,20 +119,26 @@ return [
             'query' => [
                 'myprofile' => MyProfileQuery::class,
                 'skills' => SkillsQuery::class,
-                // ExampleQuery::class,
+                'tasks' => TaskQuery::class,
+                'users' => UsersQuery::class,
+                'token' => PersonalAccessTokenQuery::class
             ],
             'mutation' => [
                 'newSkill' => CreateSkillMutation::class,
                 'updateSkill' => UpdateSkillMutation::class,
-                // ExampleMutation::class,
+                'login' => LoginUserMutation::class,
+                'register' => RegisterUserMutation::class,
             ],
             'types' => [
                 'myprofile' => MyProfileType::class,
                 'skill' => SkillType::class,
-                // ExampleType::class,
+                'user' => UserType::class,
+                'task' => TaskType::class,
+                'token' => UserAccessTokenType::class
             ],
             'middleware' => [],
-            'method' => ['get', 'post'],
+            // Which HTTP methods to support; must be given in UPPERCASE!
+            'method' => ['GET', 'POST'],
         ],
     ],
 
