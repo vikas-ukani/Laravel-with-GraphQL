@@ -36,15 +36,15 @@ class UsersQuery extends Query
 
     public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields, SelectFields $fields)
     {
-        $users = User::with('tokens')->get();
-
-        foreach ($users as $user) {
+        /*
+           $users = User::with('tokens')->get();
+          foreach ($users as $user) {
             foreach($user->tokens as $token) {
 
                 var_dump($token->token);
             }
-        }
+        }*/
 
-        return $users;
+        return User::all();
     }
 }

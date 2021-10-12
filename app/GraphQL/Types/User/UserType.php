@@ -37,7 +37,7 @@ class UserType extends GraphQLType
                 'description' => 'The user tasks',
                 'always' => ['title'],
             ],
-            'token' => [
+            'tokens' => [
                 'type' => GraphQL::type('token'),
                 'description' => 'The user access token',
                 'always' => ['token'],

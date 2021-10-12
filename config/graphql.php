@@ -136,7 +136,7 @@ return [
                 'task' => TaskType::class,
                 'token' => UserAccessTokenType::class
             ],
-            'middleware' => [],
+            'middleware' => ['web'],
             // Which HTTP methods to support; must be given in UPPERCASE!
             'method' => ['GET', 'POST'],
         ],

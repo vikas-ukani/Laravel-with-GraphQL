@@ -9,6 +9,7 @@ use App\Models\User;
 use Closure;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\PersonalAccessToken;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
@@ -20,6 +21,13 @@ class PersonalAccessTokenQuery extends Query
         'name'          => 'User access token',
         'description'   => 'User access token'
     ];
+
+    public function authorize($root, array $args, $ctx, ResolveInfo $resolveInfo = null, Closure $getSelectFields = null): bool
+    {
+        // true, if logged in
+        return ! Auth::guest();
+    }
+
 
     public function type(): Type
     {
@@ -36,7 +44,6 @@ class PersonalAccessTokenQuery extends Query
 
     public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields, SelectFields $fields)
     {
-        var_dump(auth()->user());
-        return PersonalAccessToken::where('id',1)->first();
+        return PersonalAccessToken::where('tokenable_id',auth()->id())->first();
     }
 }
