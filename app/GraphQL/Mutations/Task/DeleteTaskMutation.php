@@ -33,7 +33,7 @@ class DeleteTaskMutation extends Mutation
 
     public function resolve($root, $args)
     {
-        $task = Task::find($args['id']);
+        $task = Task::findOrFail($args['id']);
 
         if ($task->user_id != auth()->id()) {
             abort(403, 'You are not authorized to preform this action');
