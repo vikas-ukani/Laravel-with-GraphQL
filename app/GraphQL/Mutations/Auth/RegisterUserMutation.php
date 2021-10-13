@@ -18,8 +18,12 @@ class RegisterUserMutation extends Mutation
 
     public function type(): Type
     {
-        return GraphQL::type('user');
+        return Type::string();
     }
+    /*  public function type(): Type
+      {
+          return GraphQL::type('user');
+      }*/
 
     public function args(): array
     {
@@ -44,11 +48,6 @@ class RegisterUserMutation extends Mutation
             "password" => bcrypt($args['password']),
         ]));
 
-        $success = [
-            'token' => $user->createToken('MyAppToken')->plainTextToken,
-            'user' => $user
-        ];
-
-        return $user;
+        return $user->createToken('MyAppToken')->plainTextToken;
     }
 }

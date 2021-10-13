@@ -17,6 +17,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('title');
+            $table->boolean('is_completed')->default(0);
             $table->timestamps();
         });
     }

@@ -34,7 +34,8 @@ class TaskQuery extends Query
     {
         return [
             'id' => ['name' => 'id', 'type' => Type::id()],
-            'title' => ['name' => 'title', 'type' => Type::string()]
+            'title' => ['name' => 'title', 'type' => Type::string()],
+            'is_completed' => ['name' => 'is_completed', 'type' => Type::boolean()]
         ];
     }
 

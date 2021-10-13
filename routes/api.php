@@ -15,12 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('login', function () {
-    auth()->attempt(['email' => 'jelenavuc@gmail.com', 'password' => '12345678']);
-    $success = ['token' => auth()->user()->createToken('API Token')->plainTextToken];
-    return $success;
-});
+Route::post('login', [LoginController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/test', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

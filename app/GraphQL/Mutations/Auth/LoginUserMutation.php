@@ -22,7 +22,7 @@ class LoginUserMutation extends Mutation
     {
         return Type::string();
     }
-   /* public function type(): Type
+  /*  public function type(): Type
     {
         return GraphQL::type('user');
     }*/
@@ -49,7 +49,7 @@ class LoginUserMutation extends Mutation
             abort(401, 'Credentials does not match');
         }
 
-        return auth()->user()->createToken('API Token')->plainTextToken;
+        return  auth()->user()->createToken('API Token')->plainTextToken;
     }
 
 

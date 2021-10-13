@@ -6,6 +6,9 @@ use App\GraphQL\Mutations\Auth\LoginUserMutation;
 use App\GraphQL\Mutations\Auth\RegisterUserMutation;
 use App\GraphQL\Mutations\Skills\CreateSkillMutation;
 use App\GraphQL\Mutations\Skills\UpdateSkillMutation;
+use App\GraphQL\Mutations\Task\CreateTaskMutation;
+use App\GraphQL\Mutations\Task\DeleteTaskMutation;
+use App\GraphQL\Mutations\Task\UpdateTaskStatusMutation;
 use App\GraphQL\Queries\SkillsQuery;
 use App\GraphQL\Queries\Task\TaskQuery;
 use App\GraphQL\Queries\User\UsersQuery;
@@ -124,6 +127,9 @@ return [
             'mutation' => [
                 'newSkill' => CreateSkillMutation::class,
                 'updateSkill' => UpdateSkillMutation::class,
+                'newTask' => CreateTaskMutation::class,
+                'updateTaskStatus' => UpdateTaskStatusMutation::class,
+                'deleteTask' => DeleteTaskMutation::class
             ],
             'types' => [
                 'myprofile' => MyProfileType::class,
