@@ -20,8 +20,12 @@ class LoginUserMutation extends Mutation
 
     public function type(): Type
     {
-        return GraphQL::type('user');
+        return Type::string();
     }
+   /* public function type(): Type
+    {
+        return GraphQL::type('user');
+    }*/
 
     public function args(): array
     {
@@ -41,18 +45,12 @@ class LoginUserMutation extends Mutation
 
     public function resolve($root, $args, $context, ResolveInfo $info, Closure $getSelectFields)
     {
-        $fields = $getSelectFields();
-        $with = $fields->getRelations();
-
         if (!auth()->attempt(['email' => $args['email'], 'password' => $args['password']])) {
             abort(401, 'Credentials does not match');
         }
 
-        $success = ['token' => auth()->user()->createToken('API Token')->plainTextToken];
-
-        $user = auth()->user();
-
-        var_dump(auth()->user()->name);
-        return $user;
+        return auth()->user()->createToken('API Token')->plainTextToken;
     }
+
+
 }

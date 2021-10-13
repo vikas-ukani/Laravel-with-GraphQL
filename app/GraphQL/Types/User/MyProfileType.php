@@ -36,7 +36,7 @@ class MyProfileType extends GraphQLType
                 'type' => Type::listOf(GraphQL::type('task')),
                 'description' => 'The user tasks',
                 'always' => ['title'],
-            ],
+            ]
 
         ];
     }
