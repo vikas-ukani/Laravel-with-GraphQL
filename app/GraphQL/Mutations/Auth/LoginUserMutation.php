@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutations\Auth;
 
-use App\Models\User;
 use Closure;
 use GraphQL\Type\Definition\Type;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\ResolveInfo;
-use Rebing\GraphQL\Support\SelectFields;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 
 class LoginUserMutation extends Mutation
 {
@@ -20,12 +18,8 @@ class LoginUserMutation extends Mutation
 
     public function type(): Type
     {
-        return Type::string();
+        return GraphQL::type('login');
     }
-  /*  public function type(): Type
-    {
-        return GraphQL::type('user');
-    }*/
 
     public function args(): array
     {
@@ -38,8 +32,8 @@ class LoginUserMutation extends Mutation
     public function rules(array $args = []): array
     {
         return [
+            'email' => ['required', 'email'],
             'password' => ['required', 'min:8|max:255'],
-            'email' => ['required', 'email']
         ];
     }
 
@@ -49,8 +43,8 @@ class LoginUserMutation extends Mutation
             abort(401, 'Credentials does not match');
         }
 
-        return  auth()->user()->createToken('API Token')->plainTextToken;
+        $user = auth()->user();
+        $user['token'] = $user->createToken('API Token')->plainTextToken;
+        return $user;
     }
-
-
 }

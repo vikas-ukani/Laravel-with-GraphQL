@@ -6,9 +6,8 @@ namespace App\GraphQL\Mutations\Auth;
 
 use App\Models\User;
 use GraphQL\Type\Definition\Type;
-use Illuminate\Support\Facades\Auth;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Mutation;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 
 class RegisterUserMutation extends Mutation
 {
@@ -18,7 +17,7 @@ class RegisterUserMutation extends Mutation
 
     public function type(): Type
     {
-        return Type::string();
+        return GraphQL::type('register');
     }
     /*  public function type(): Type
       {
@@ -48,6 +47,8 @@ class RegisterUserMutation extends Mutation
             "password" => bcrypt($args['password']),
         ]));
 
-        return $user->createToken('MyAppToken')->plainTextToken;
+        $user['token'] = $user->createToken('API Token')->plainTextToken;
+        return $user;
+        // return $user->createToken('MyAppToken')->plainTextToken;
     }
 }

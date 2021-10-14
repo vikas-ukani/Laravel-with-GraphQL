@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutations\Skills;
 
-use App\Models\Skill;
 use Closure;
-use GraphQL\Type\Definition\ResolveInfo;
+use App\Models\Skill;
 use GraphQL\Type\Definition\Type;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Mutation;
-use Rebing\GraphQL\Support\SelectFields;
+use GraphQL\Type\Definition\ResolveInfo;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 
 class CreateSkillMutation extends Mutation
 {

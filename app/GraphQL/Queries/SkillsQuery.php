@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
-use App\Models\Skill;
-use App\Models\User;
 use Closure;
-use GraphQL\Type\Definition\ResolveInfo;
+use App\Models\User;
+use App\Models\Skill;
 use GraphQL\Type\Definition\Type;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
+use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\SelectFields;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 
 class SkillsQuery extends Query
 {
@@ -34,6 +34,11 @@ class SkillsQuery extends Query
         ];
     }
 
+      public function authorize($root, array $args, $ctx, ?ResolveInfo $resolveInfo = null, ?Closure $getSelectFields = null): bool
+    {
+        return auth()->guard()->check();
+    }
+
     public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         /** @var SelectFields $fields */
@@ -42,9 +47,6 @@ class SkillsQuery extends Query
         $with       = $fields->getRelations();
 
         $where = function ($query) use ($args) {
-            // foreach ($args as $key => $value) {
-            //     $query = $query->where($key, $value);
-            // }
             if (isset($args['id'])) {
                 $query = $query->where('id', $args['id']);
             }
