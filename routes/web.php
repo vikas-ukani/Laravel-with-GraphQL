@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Skill;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/skills', function () {
-    return response()->json(Skill::all());
-});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-
+require __DIR__.'/auth.php';
