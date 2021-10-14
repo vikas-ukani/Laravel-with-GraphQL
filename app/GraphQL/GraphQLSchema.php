@@ -55,7 +55,7 @@ class GraphQLSchema
                     'task' => TaskType::class,
                 ],
                 'middleware' => [
-                    // 'auth:sanctum',
+                    'auth:sanctum',
                 ],
                 'method' => ['GET', 'POST'],
             ],

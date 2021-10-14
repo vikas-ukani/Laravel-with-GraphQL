@@ -23,7 +23,6 @@ class SkillsQuery extends Query
     public function type(): Type
     {
         return Type::listOf(GraphQL::type('skill'));
-        // return Type::listOf(Type::string());
     }
 
     public function args(): array
@@ -34,10 +33,10 @@ class SkillsQuery extends Query
         ];
     }
 
-      public function authorize($root, array $args, $ctx, ?ResolveInfo $resolveInfo = null, ?Closure $getSelectFields = null): bool
-    {
-        return auth()->guard()->check();
-    }
+    // public function authorize($root, array $args, $ctx, ?ResolveInfo $resolveInfo = null, ?Closure $getSelectFields = null): bool
+    // {
+    //     return auth()->guard()->check();
+    // }
 
     public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
