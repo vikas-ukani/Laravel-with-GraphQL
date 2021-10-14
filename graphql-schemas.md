@@ -19,6 +19,16 @@ mutation login {
 }
 
 
+Name: Register GraphQL
+URL: http://localhost:8000/graphiql/register
+Schema: 
+mutation register {
+  register(name:"Vikas", email:"vikas@mail.com", password:"password" ){
+    id, name, email, token
+  }
+}
+
+
 --------------------- TESTING ---------------------
 
 query getSkills {

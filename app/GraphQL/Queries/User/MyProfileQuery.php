@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries\User;
 
-use App\Models\User;
 use Closure;
-use GraphQL\Type\Definition\ResolveInfo;
+use App\Models\User;
 use GraphQL\Type\Definition\Type;
-use Illuminate\Support\Facades\Auth;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
-use Rebing\GraphQL\Support\SelectFields;
+use Illuminate\Support\Facades\Auth;
+use GraphQL\Type\Definition\ResolveInfo;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 
 class MyProfileQuery extends Query
 {

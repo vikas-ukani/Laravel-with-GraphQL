@@ -2,23 +2,8 @@
 
 declare(strict_types=1);
 
-use App\GraphQL\Types\SkillType;
-use App\GraphQL\Queries\SkillsQuery;
-use App\GraphQL\Types\Task\TaskType;
-use App\GraphQL\Types\User\UserType;
-use App\GraphQL\Types\Auth\LoginType;
-use App\GraphQL\Queries\Task\TaskQuery;
-use App\GraphQL\Queries\User\UsersQuery;
-use App\GraphQL\Types\User\MyProfileType;
-use App\GraphQL\Queries\User\MyProfileQuery;
-use App\GraphQL\Mutations\Auth\LoginUserMutation;
-use App\GraphQL\Mutations\Task\CreateTaskMutation;
-use App\GraphQL\Mutations\Task\DeleteTaskMutation;
-use App\GraphQL\Types\User\PersonalAccessTokenType;
-use App\GraphQL\Mutations\Auth\RegisterUserMutation;
-use App\GraphQL\Mutations\Skills\CreateSkillMutation;
-use App\GraphQL\Mutations\Skills\UpdateSkillMutation;
-use App\GraphQL\Mutations\Task\UpdateTaskStatusMutation;
+use App\GraphQL\GraphQLSchema;
+
 
 return [
     // The prefix for routes
@@ -117,68 +102,8 @@ return [
     //      ],
     //  ]
     //
-    'schemas' => [
-        'default' => [
-            'query' => [
-                'myprofile' => MyProfileQuery::class,
-                'skills' => SkillsQuery::class,
-                'tasks' => TaskQuery::class,
-                'users' => UsersQuery::class,
-            ],
-            'mutation' => [
-                'newSkill' => CreateSkillMutation::class,
-                'updateSkill' => UpdateSkillMutation::class,
-                'newTask' => CreateTaskMutation::class,
-                'updateTaskStatus' => UpdateTaskStatusMutation::class,
-                'deleteTask' => DeleteTaskMutation::class
-            ],
-            'types' => [
-                'token' => PersonalAccessTokenType::class,
-                'myprofile' => MyProfileType::class,
-                'skill' => SkillType::class,
-                'user' => UserType::class,
-                'login' => LoginType::class,
-                'task' => TaskType::class,
-            ],
-            'middleware' => [],
-            // 'middleware' => ['auth:sanctum'],
-            // Which HTTP methods to support; must be given in UPPERCASE!
-            'method' => ['GET', 'POST'],
-        ],
-        'login' => [
-            'query' => [],
-            'mutation' => [
-                'login' => LoginUserMutation::class, // WORKING - Reference `graphql-schemas.md`
-            ],
-            'types' => [
-                'login' => LoginType::class,
-                'myprofile' => MyProfileType::class,
-                'skill' => SkillType::class,
-                'user' => UserType::class,
-                'task' => TaskType::class,
-                'token' => PersonalAccessTokenType::class
-            ],
-            'middleware' => [],
-            // Which HTTP methods to support; must be given in UPPERCASE!
-            'method' => ['GET', 'POST'],
-        ],
-        'register' => [
-            'query' => [],
-            'mutation' => [
-                'register' => RegisterUserMutation::class,
-            ],
-            'types' => [
-                'myprofile' => MyProfileType::class,
-                'skill' => SkillType::class,
-                'user' => UserType::class,
-                'task' => TaskType::class,
-                // 'token' => PersonalAccessTokenType::class
-            ],
-            'middleware' => [],
-            // Which HTTP methods to support; must be given in UPPERCASE!
-            'method' => ['GET', 'POST'],
-        ],
-    ],
+    'schemas' => GraphQLSchema::schema() ,
+   
 
     // The types available in the application. You can then access it from the
     // facade like this: GraphQL::type('user')
